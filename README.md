@@ -1,4 +1,4 @@
-# opencartCartOverrideFix
+# Opencart Cart Override Fix
   Opencart default behaviour is to save cart products when user logs out or leaves website.
   
   So anytime user logs In , all the items are added back to cart. 
