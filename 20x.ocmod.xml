@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<code>cartfix</code>
+	<name>Cart contents override issue fix 2</name>
+	<version>1.0</version>
+	<author>Saqib Ashraf, support: https://iextendlabs.com/helpdesk</author>
+	<link>http://iextendlabs.com</link>
+
+<file path="system/library/customer.php">
+	<operation>
+		<search><![CDATA[
+if (!$query->num_rows) {
+		]]></search>
+		<add position="before"><![CDATA[
+			$this->db->query("update " . DB_PREFIX . "customer set cart='a:0:{}' WHERE customer_id = '". $customer_query->row['customer_id']."'");
+		]]></add>
+	</operation>
+	<operation>
+		<search><![CDATA[
+unset($this->session->data['customer_id']);
+		]]></search>
+		<add position="before"><![CDATA[
+			$this->db->query("update " . DB_PREFIX . "customer set cart='a:0:{}' WHERE customer_id = '". $customer_query->row['customer_id']."'");
+		]]></add>
+	</operation>
+</file>
+</modification>

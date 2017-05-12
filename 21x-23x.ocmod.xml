@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<code>cartfix</code>
+	<name>Cart contents override issue fix 2</name>
+	<version>1.0</version>
+	<author>Saqib Ashraf,linktosaqib@gmail.com,support: http://arjusdevelopers.com</author>
+	<link>http://arjusdevelopers.com</link>
+
+<file path="system/library/customer.php">
+	<operation>
+		<search><![CDATA[
+if ($customer_query->num_rows) {
+		]]></search>
+		<add position="after"><![CDATA[
+			$this->db->query("delete FROM " . DB_PREFIX . "cart WHERE customer_id = '". $customer_query->row['customer_id']."'");
+
+		]]></add>
+	</operation>
+</file>
+</modification>
